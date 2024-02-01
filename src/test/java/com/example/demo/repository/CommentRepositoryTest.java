@@ -17,6 +17,8 @@ public class CommentRepositoryTest {
 	@Autowired
 	CommentRepository repo;
 	
+
+	
 	@Test
 	public void 댓긋등록() {
 		Member member = new Member("user", "1234","eric");
@@ -29,6 +31,8 @@ public class CommentRepositoryTest {
 							.build();
 		
 		repo.save(comment);
+		
+		
 
 	}
 	
@@ -54,4 +58,24 @@ public class CommentRepositoryTest {
 	public void 댓글삭제() {
 		repo.deleteAll();
 	}
+	
+	
+	
+	@Test
+	public void 게시물별_댓글목록조회() {
+		Board board = Board.builder().no(10).build();
+		List<Comment> list = repo.findByBoard(board);
+		for(Comment comment : list) {
+			System.out.println(comment);
+		}
+	}
+	
+	@Test
+	public void 게시물별_댓글일괄삭제() {
+		Board board = Board.builder().no(10).build();
+		repo.deleteByBoard(board);
+	}
+	
+	
+	
 }
