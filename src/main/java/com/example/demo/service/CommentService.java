@@ -16,7 +16,7 @@ public interface CommentService {
 	List<CommentDTO> getListByBoardNo(int boardNo);
 	
 	//댓글 삭제 메소드
-	void remove(int no);
+	boolean remove(int no);
 	
 	
 	

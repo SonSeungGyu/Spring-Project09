@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,9 +46,18 @@ public class CommentServiceImpl implements CommentService{
 	}
 
 	@Override
-	public void remove(int no) {
-		repo.deleteById(no);
+	public boolean remove(int no) {
 		
+		//해당 댓글이 있는지 확인
+		Optional<Comment> comment = repo.findById(no);
+		
+		//없다면 false 반환
+		if(comment.isEmpty()) {
+			return false;
+		}
+		//있다면 댓글 삭제 후 true 반환
+		repo.deleteById(no);
+		return true;
 	}
 	
 	

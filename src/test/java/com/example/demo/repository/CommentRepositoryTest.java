@@ -22,7 +22,7 @@ public class CommentRepositoryTest {
 	@Test
 	public void 댓긋등록() {
 		Member member = new Member("user", "1234","eric");
-		Board board = new Board(10,"제목", "내용",member);
+		Board board = new Board(9,"제목", "내용",member);
 		Comment comment = Comment.builder()
 							.commentNo(0)
 							.board(board)
